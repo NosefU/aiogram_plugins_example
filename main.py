@@ -13,9 +13,6 @@ from plugins import Plugin
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s\t%(name)s\t%(levelname)s\t%(message)s")
 
-bot = Bot(token=os.environ['BOT_TOKEN'])
-dp = Dispatcher()
-
 
 def load_plugins(plugin_list: list = None) -> List[Plugin]:
     found_plugins = {}
@@ -52,6 +49,9 @@ async def main():
 
 
 if __name__ == "__main__":
+    bot = Bot(token=os.environ['BOT_TOKEN'])
+    dp = Dispatcher()
+
     config_plugins = os.environ.get('BOT_PLUGINS')
     config_plugins = config_plugins.split(',') if config_plugins else None
     plugins = load_plugins(config_plugins)
